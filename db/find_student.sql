@@ -1,0 +1,1 @@
+select * from hogwarts_students where student_name = $1;

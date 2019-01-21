@@ -1,0 +1,2 @@
+insert into hogwarts_roles(student_id,class_id)
+values((select hogwarts_students.student_id from hogwarts_students where hogwarts_students.student_name=$1),(select hogwarts_classes.class_id from hogwarts_classes where hogwarts_classes.class_name=$2))
