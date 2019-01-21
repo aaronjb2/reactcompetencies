@@ -1,0 +1,2 @@
+select hogwarts_professors.professor_id, hogwarts_professors.professor_name, hogwarts_classes.class_id, hogwarts_classes.class_name from hogwarts_professors 
+inner join hogwarts_classes on hogwarts_professors.professor_name = hogwarts_classes.class_teacher where hogwarts_professors.professor_name = $1;
