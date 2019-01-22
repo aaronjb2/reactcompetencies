@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {setTeacher} from './dux/reducer.js';
 import DisplayTeacher from './DisplayTeacher.js';
+import FunctionalComponent from './FunctionalComponent.js';
 
 class Student extends Component{
     constructor(props){
@@ -185,6 +186,7 @@ class Student extends Component{
             <div>
                 <h1><Link to='/teacher'><button>Navigate to Teacher Page</button></Link></h1>
                 Student
+                <FunctionalComponent/>
                 {this.displayLogin()}
                 {this.displayLogout()}
                 {this.displayAllRoles()}
