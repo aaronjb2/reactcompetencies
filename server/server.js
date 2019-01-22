@@ -16,6 +16,7 @@ app.use(session({ resave: true ,secret: '123456' , saveUninitialized: true}));
 
 const {SERVER_PORT, MASSIVE_CONNECTION} = process.env;
 
+
 app.listen(SERVER_PORT, () =>{
     console.log(`On the ${SERVER_PORT}th day of Christmas my true love gave to me..... nothing because I'm single.`);
 })
@@ -29,7 +30,25 @@ app.post('/student/create',authctrl.createStudent);
 
 app.post('/student/login',authctrl.login);
 
-app.get('/student/get-student',authctrl.getStudent);
+app.delete('/student/logout',authctrl.logout)
+
+app.get('/student/get-student', (req,res,next)=>{
+    if (req.session.student){
+        if (req.session.student.student_name==='harry'){
+            console.log('chosen one')
+        }else{
+            console.log('not chosen one')
+        }
+    }
+    next();
+}, (req,res,next)=>{
+    if (req.session.student){
+        res.status(200).send({status:'loggedIn', student_name:req.session.student.student_name, student_id: req.session.student.student_id});
+        
+    }else{
+        res.sendStatus(200);
+    }
+});
 
 app.get('/teacher/get-class-i-teach/:professor_name',teachctrl.getClassITeach)
 

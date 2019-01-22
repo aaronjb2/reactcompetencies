@@ -22,12 +22,9 @@ module.exports = {
             res.status(401).send('invalid password');
         }
     },
-    async getStudent(req,res,next){
-        console.log('req.session:',req.session)
-        if (req.session.student){
-            res.status(200).send({status:'loggedIn', student_name:req.session.student.student_name, student_id: req.session.student.student_id});
-        }else{
-            res.sendStatus(200);
-        }
+    async logout(req,res,next){
+        req.session.student = {student_name:'',student_id:0};
+        req.session.destroy();
+        res.status(200).send({status:'loggedOut',student_name:'',student_id:0});
     }
 }
